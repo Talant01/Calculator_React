@@ -1,21 +1,16 @@
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useState } from 'react'
+import React from 'react'
+import { IDisplayCurrency } from '../../interfaces/display'
 import SelectCurrency from './SelectCurrency'
 
-const Display = () => {
-  const [from, setFrom] = useState<string>('')
-  const [to, setTo] = useState<string>('')
-
-  const onChangeFrom = (value: string) => {
-    setFrom(value)
-  }
-
-  const onChangeTo = (value: string) => {
-    setTo(value)
-  }
-
-  console.log(from + ' ' + to)
+const Display: React.FC<IDisplayCurrency> = ({
+  toValue,
+  fromValue,
+  state,
+  onChangeFrom,
+  onChangeTo,
+}) => {
   return (
     <Box
       sx={{
@@ -38,7 +33,8 @@ const Display = () => {
       >
         <SelectCurrency onChange={onChangeFrom} />
         <Typography color="primary" variant="subtitle1">
-          5000USD
+          {eval(fromValue)}
+          {!state ? '_' : ''}
         </Typography>
       </Typography>
       <Typography
@@ -51,7 +47,8 @@ const Display = () => {
       >
         <SelectCurrency onChange={onChangeTo} />
         <Typography color="primary" variant="subtitle1">
-          500KGS
+          {eval(toValue)}
+          {state ? '_' : ''}
         </Typography>
       </Typography>
     </Box>

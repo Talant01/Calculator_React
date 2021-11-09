@@ -6,7 +6,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material'
 import React from 'react'
-import { IDisplayCurrency } from '../../interfaces/display'
+import { IDisplayCurrencySelect } from '../../interfaces/display'
 
 const currencies = [
   {
@@ -31,8 +31,8 @@ const currencies = [
   },
 ]
 
-const SelectCurrency: React.FC<IDisplayCurrency> = ({ onChange }) => {
-  const [value, setValue] = React.useState('')
+const SelectCurrency: React.FC<IDisplayCurrencySelect> = ({ onChange }) => {
+  const [value, setValue] = React.useState(currencies[0].value)
 
   const handleChange = (event: SelectChangeEvent) => {
     onChange(event.target.value as string)
@@ -42,7 +42,7 @@ const SelectCurrency: React.FC<IDisplayCurrency> = ({ onChange }) => {
   return (
     <Box sx={{ minWidth: 60 }}>
       <FormControl fullWidth size="small" variant="standard" margin="dense">
-        <Select value={value} label="Age" onChange={handleChange}>
+        <Select value={value} label="Currency" onChange={handleChange}>
           {currencies.map((currency, id) => {
             return (
               <MenuItem key={currency.label + id} value={currency.value}>
