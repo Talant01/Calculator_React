@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Basic - calculate basic operations like addition, subtraction, division, multiplication
+Basic - calculate basic operations like addition, subtraction, division, multiplication\
 Currency - calculate currency by using another API currency rate
 
 In the project directory, you can run:
