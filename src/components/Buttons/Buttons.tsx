@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material'
 import React from 'react'
-import { IButtonsProps } from '../interfaces/button'
+import { IButtonsProps } from '../../interfaces/button'
 import ButtonTemp from './ButtonTemp'
 
 const Buttons: React.FC<IButtonsProps> = ({ values, onPress }) => {
@@ -14,8 +14,8 @@ const Buttons: React.FC<IButtonsProps> = ({ values, onPress }) => {
     >
       {values.map((value, id) => {
         return (
-          <Grid item xs={3} key={value + id}>
-            <ButtonTemp value={value} onPress={onPress}/>
+          <Grid item xs={3} key={value.value + id}>
+            <ButtonTemp value={value.value} onPress={onPress} disable={value.disable}/>
           </Grid>
         )
       })}

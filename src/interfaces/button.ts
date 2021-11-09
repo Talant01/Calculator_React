@@ -1,10 +1,15 @@
+interface IValue {
+  value: string
+  disable: boolean
+}
+
 export interface IButtonProps {
-    value: string
-    onPress(value: string): void
+  value: string
+  onPress(value: string): void
+  disable: boolean
 }
 
 export interface IButtonsProps {
-    values: string[]
-    onPress(value: string): void
-
+  values: Array<IValue>
+  onPress(value: string): void
 }

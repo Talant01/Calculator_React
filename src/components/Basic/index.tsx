@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import Buttons from '../Buttons'
+import Buttons from '../Buttons/Buttons'
 import Display from './Display'
 import mexp from 'math-expression-evaluator'
 import expParser from '../../utils/expParser'
 
 const values = [
-  'C',
-  '()',
-  '%',
-  '/',
-  '7',
-  '8',
-  '9',
-  '*',
-  '4',
-  '5',
-  '6',
-  '-',
-  '1',
-  '2',
-  '3',
-  '+',
-  '+/-',
-  '0',
-  '.',
-  '=',
+  { value: 'C', disable: false },
+  { value: '()', disable: false },
+  { value: '%', disable: false },
+  { value: '/', disable: false },
+  { value: '7', disable: false },
+  { value: '8', disable: false },
+  { value: '9', disable: false },
+  { value: '*', disable: false },
+  { value: '4', disable: false },
+  { value: '5', disable: false },
+  { value: '6', disable: false },
+  { value: '-', disable: false },
+  { value: '1', disable: false },
+  { value: '2', disable: false },
+  { value: '3', disable: false },
+  { value: '+', disable: false },
+  { value: '+/-', disable: true },
+  { value: '0', disable: false },
+  { value: '.', disable: false },
+  { value: '=', disable: false }
 ]
 
 export default function Basic() {
