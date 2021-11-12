@@ -17,7 +17,7 @@ const ButtonTemp: React.FC<ButtonProps & IButtonProps> = ({
     <Button
       variant={variant}
       color={color}
-      onClick={(e) => onPress(value)}
+      onClick={() => onPress(value)}
       disabled={disable}
       sx={{
         borderRadius: '8px',

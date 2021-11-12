@@ -2,25 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Buttons from '../Buttons/Buttons'
 import Display from './Display'
 import axios from 'axios'
-
-const values = [
-  { value: '7', disable: false },
-  { value: '8', disable: false },
-  { value: '9', disable: false },
-  { value: 'backspace', disable: false },
-  { value: '4', disable: false },
-  { value: '5', disable: false },
-  { value: '6', disable: false },
-  { value: 'C', disable: false },
-  { value: '1', disable: false },
-  { value: '2', disable: false },
-  { value: '3', disable: false },
-  { value: 'up', disable: false },
-  { value: '+/-', disable: true },
-  { value: '0', disable: false },
-  { value: '.', disable: false },
-  { value: 'down', disable: false },
-]
+import { currencyValues } from '../../utils/keypad'
 
 export default function Currency() {
   const [state, setState] = useState<Boolean>(false)
@@ -55,7 +37,7 @@ export default function Currency() {
     setTo(value)
   }
 
-  const updatedValues = values.map((value) => {
+  const updatedValues = currencyValues.map((value) => {
     if (value.value === 'up' && !state)
       return { value: value.value, disable: true }
     if (value.value === 'down' && state)

@@ -1,8 +1,3 @@
-export interface IDisplay {
-  expression: string
-  result: number | undefined
-}
-
 export interface IDisplayCurrency {
   toValue: string
   fromValue: string

@@ -1,9 +1,11 @@
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React from 'react'
-import { IDisplay } from '../../interfaces/display'
+import { useSelector } from 'react-redux'
+import { State } from '../../store/reducers/index'
 
-const Display: React.FC<IDisplay> = ({ expression, result }) => {
+const Display = () => {
+  const { expression, total } = useSelector((state: State) => state.calculate)
+
   return (
     <Box
       sx={{
@@ -31,7 +33,7 @@ const Display: React.FC<IDisplay> = ({ expression, result }) => {
         <Typography color="primary" variant="subtitle1">
           Result:
         </Typography>
-        {result}
+        {total}
       </Typography>
     </Box>
   )
