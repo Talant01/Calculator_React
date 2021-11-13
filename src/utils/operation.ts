@@ -1,8 +1,11 @@
 import Mexp from 'math-expression-evaluator'
-
 const isOperation = (char: string) => {
   if (char === '+' || char === '-' || char === '/' || char === '*') return true
   return false
+}
+
+const isDigit = (char: string) => {
+  return ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(char)
 }
 
 const expParser = (expression: string, char: string) => {
@@ -50,21 +53,31 @@ const expParser = (expression: string, char: string) => {
 interface IState {
   rate: {
     [key: string]: string
-  },
-  currency: string,
+  }
+  currency: string
   amount: number
 }
 
 const calculateAmountRate = (state: IState, currency: string) => {
-  if (currency === state.currency || currency === '' || state.currency === '') return state.amount
-  
-  return parseFloat(state.rate[currency.toUpperCase()]) * state.amount 
+  if (currency === state.currency || currency === '' || state.currency === '')
+    return state.amount
+
+  return parseFloat(state.rate[currency.toUpperCase()]) * state.amount
 }
 
 const numberParse = (number: number, char: string) => {
-  if (char === 'backspace') return parseFloat(number.toString().slice(0,number.toString().length - 1))
-  if (char === '.') return (number.toString().includes('.') === false ? parseFloat(number.toFixed(1)) : number)
+  if (char === 'C') return 0
+  if (isNaN(number) || number === null)
+    return isDigit(char) ? parseFloat(char) : 0
+  if (char === 'backspace')
+    return number.toString().length === 1
+      ? 0
+      : parseFloat(number.toString().slice(0, number.toString().length - 1))
+  if (char === '.')
+    return number.toString().includes('.') === false
+      ? parseFloat(number.toFixed(1))
+      : number
   return parseFloat(number.toString() + char)
 }
 
-export {expParser, calculateAmountRate, numberParse}
+export { expParser, calculateAmountRate, numberParse }
