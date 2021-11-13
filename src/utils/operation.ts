@@ -47,4 +47,24 @@ const expParser = (expression: string, char: string) => {
   return result
 }
 
-export default expParser
+interface IState {
+  rate: {
+    [key: string]: string
+  },
+  currency: string,
+  amount: number
+}
+
+const calculateAmountRate = (state: IState, currency: string) => {
+  if (currency === state.currency || currency === '' || state.currency === '') return state.amount
+  
+  return parseFloat(state.rate[currency.toUpperCase()]) * state.amount 
+}
+
+const numberParse = (number: number, char: string) => {
+  if (char === 'backspace') return parseFloat(number.toString().slice(0,number.toString().length - 1))
+  if (char === '.') return (number.toString().includes('.') === false ? parseFloat(number.toFixed(1)) : number)
+  return parseFloat(number.toString() + char)
+}
+
+export {expParser, calculateAmountRate, numberParse}

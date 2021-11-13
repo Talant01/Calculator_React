@@ -32,7 +32,7 @@ const currencies = [
 ]
 
 const SelectCurrency: React.FC<IDisplayCurrencySelect> = ({ onChange }) => {
-  const [value, setValue] = React.useState(currencies[0].value)
+  const [value, setValue] = React.useState('')
 
   const handleChange = (event: SelectChangeEvent) => {
     onChange(event.target.value as string)

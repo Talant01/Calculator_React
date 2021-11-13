@@ -1,10 +1,9 @@
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { useSelector } from 'react-redux'
-import { State } from '../../store/reducers/index'
+import { useAppSelector } from '../../store/hooks'
 
 const Display = () => {
-  const { expression, total } = useSelector((state: State) => state.calculate)
+  const {expression, total} = useAppSelector(state => state.basic)
 
   return (
     <Box

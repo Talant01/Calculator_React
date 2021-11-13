@@ -1,16 +1,22 @@
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React from 'react'
-import { IDisplayCurrency } from '../../interfaces/display'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { fetchCurrencyRate } from '../../store/slices/currencySlice'
 import SelectCurrency from './SelectCurrency'
 
-const Display: React.FC<IDisplayCurrency> = ({
-  toValue,
-  fromValue,
-  state,
-  onChangeFrom,
-  onChangeTo,
-}) => {
+const Display = () => {
+  const dispatch = useAppDispatch()
+  const state = useAppSelector(state => state.currency)
+
+  const onFromChange = (value: string) => {
+    dispatch(fetchCurrencyRate({currency: value, state: false}))
+  }
+
+  const onToChange = (value: string) => {
+    console.log('hello')
+    dispatch(fetchCurrencyRate({currency: value, state: true}))
+  }
+
   return (
     <Box
       sx={{
@@ -31,10 +37,10 @@ const Display: React.FC<IDisplayCurrency> = ({
           alignItems: 'center',
         }}
       >
-        <SelectCurrency onChange={onChangeFrom} />
+        <SelectCurrency onChange={onFromChange}/>
         <Typography color="primary" variant="subtitle1">
-          {eval(fromValue)}
-          {!state ? '_' : ''}
+          {state.from.amount}
+          {!state.state ? '_' : ''}
         </Typography>
       </Typography>
       <Typography
@@ -45,10 +51,10 @@ const Display: React.FC<IDisplayCurrency> = ({
           alignItems: 'center',
         }}
       >
-        <SelectCurrency onChange={onChangeTo} />
+        <SelectCurrency onChange={onToChange}/>
         <Typography color="primary" variant="subtitle1">
-          {eval(toValue)}
-          {state ? '_' : ''}
+          {state.to.amount}
+          {state.state ? '_' : ''}
         </Typography>
       </Typography>
     </Box>

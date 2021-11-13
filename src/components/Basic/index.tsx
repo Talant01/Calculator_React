@@ -2,18 +2,20 @@ import React from 'react'
 import Buttons from '../Buttons/Buttons'
 import Display from './Display'
 import { basicValues } from '../../utils/keypad'
-import { useDispatch } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { actionCreators } from '../../store'
+import { useAppDispatch } from '../../store/hooks'
+import { setExpression } from '../../store/slices/basicSlice'
 
 export default function Basic() {
-  const dispatch = useDispatch()
-  const { setExp } = bindActionCreators(actionCreators, dispatch)
+  const dispatch = useAppDispatch()
+
+  const onPress = (value: string) => {
+    dispatch(setExpression(value))
+  }
 
   return (
     <React.Fragment>
       <Display />
-      <Buttons values={basicValues} onPress={setExp} />
+      <Buttons values={basicValues} onPress={onPress} />
     </React.Fragment>
   )
 }
